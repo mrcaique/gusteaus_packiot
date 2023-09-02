@@ -4,7 +4,7 @@ import { Todo } from "./entities/Todo"
 // Interaction with database is only possible with a DataSource.
 // TypeORM's DataSource hands the database connection settings and
 // establishes initial database connection.
-//
+
 // Exports DataSource to be available across the application.
 export const AppDataSource = new DataSource({
     type: "postgres",

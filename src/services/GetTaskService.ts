@@ -5,11 +5,11 @@ export class GetTaskService {
     /**
      * Service resposible to return a specific task.
      * 
-     * @param id - Identifier of the task.
+     * @param id - Task identifier.
      * @returns If task does not exists, an Error is thrown.
      */
     async execute(id : string) {
-        
+
         // Layer responsible to communicate with the database.
         const repo = AppDataSource.getRepository(Todo);
 

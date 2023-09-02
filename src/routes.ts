@@ -5,6 +5,8 @@ import { DeleteTaskController } from "./controllers/DeleteTaskController";
 import { UpdateTaskController } from "./controllers/UpdateTaskController";
 import { GetTaskController } from "./controllers/GetTaskController";
 
+// Defining a router.
+// Router is a middleware to provide common services to the main application.
 const routes = Router();
 routes.use(json());
 
