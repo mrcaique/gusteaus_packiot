@@ -1,7 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreteToDo1693547697092 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({

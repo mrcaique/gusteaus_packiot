@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import express from 'express';
-import "./database";
+import express from "express";
+import "./database/migrations/1693547697092-CreteToDo"
 import { routes } from "./routes";
 
 const app = express();

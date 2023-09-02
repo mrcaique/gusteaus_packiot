@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import { CreateTodoService } from "../services/CreateTodoService";
 
 export class CreateTodoController {
@@ -7,6 +7,6 @@ export class CreateTodoController {
         const service = new CreateTodoService();
         const result = await service.execute({title, description});
 
-        return response.json(result);
+        return res.json(result);
     }
 }

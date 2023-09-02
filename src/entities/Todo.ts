@@ -18,6 +18,6 @@ export class Todo {
     @UpdateDateColumn()
     updated_at: Date;
 
-    @CreateDateColumn()
+    @Column({type : 'timestamptz'})
     finished_at: Date;
 }
