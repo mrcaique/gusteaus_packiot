@@ -1,5 +1,15 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+    Entity,
+    Column,
+    CreateDateColumn,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
 
+/**
+ * Entity is a class that maps to a database table.
+ * Maps to "Todo" table on the database.
+ */
 @Entity("todo")
 export class Todo {
 

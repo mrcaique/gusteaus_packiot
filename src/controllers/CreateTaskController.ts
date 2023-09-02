@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { UpdateTaskService } from "../services/UpdateTaskService";
+import { CreateTaskService } from "../services/CreateTaskService";
 
-export class UpdateTaskController {
+export class CreateTaskController {
     /**
      * 
      * @param req 
@@ -9,11 +9,9 @@ export class UpdateTaskController {
      * @returns 
      */
     async handle(req: Request, res: Response) {
-        const { id } = req.params;
-        const { title, description } = req.body;
-        
-        const service = new UpdateTaskService();
-        const result = await service.execute({ id, title, description });
+        const {title, description} = req.body;
+        const service = new CreateTaskService();
+        const result = await service.execute({title, description});
 
         if (result instanceof Error) {
             return res.status(400).json(result.message);

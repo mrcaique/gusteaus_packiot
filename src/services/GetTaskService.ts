@@ -1,14 +1,16 @@
 import { Todo } from "../entities/Todo";
 import { AppDataSource } from "../data-source";
 
-type TodoViewRequest = {
-    id: string,
-    title: string,
-    description: string
-};
-
 export class GetTaskService {
-    async execute({id, title, description} : TodoViewRequest) {
+    /**
+     * Service resposible to return a specific task.
+     * 
+     * @param id - Identifier of the task.
+     * @returns If task does not exists, an Error is thrown.
+     */
+    async execute(id : string) {
+        
+        // Layer responsible to communicate with the database.
         const repo = AppDataSource.getRepository(Todo);
 
         const task = await repo.findOneBy({id : id});
