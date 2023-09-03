@@ -1,5 +1,5 @@
 import { Todo } from "../entities/Todo";
-import { AppDataSource } from "../data-source";
+import { getDataSource } from "../data-source";
 
 // Informations needed to create a new task.
 type TaskRequest = {
@@ -18,6 +18,7 @@ export class CreateTaskService {
     async execute({title, description} : TaskRequest) : Promise<Todo> {
         
         // Layer responsible to communicate with the database.
+        const AppDataSource = await getDataSource();
         const repo = AppDataSource.getRepository(Todo);
 
         const task = repo.create({

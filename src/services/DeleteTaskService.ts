@@ -1,5 +1,5 @@
 import { Todo } from "../entities/Todo";
-import { AppDataSource } from "../data-source";
+import { getDataSource } from "../data-source";
 
 export class DeleteTaskService {
     /**
@@ -11,6 +11,7 @@ export class DeleteTaskService {
     async execute(id : string) {
         
         // Layer responsible to communicate with the database.
+        const AppDataSource = await getDataSource();
         const repo = AppDataSource.getRepository(Todo);
 
         if (!(await repo.findOneBy({id : id}))) {

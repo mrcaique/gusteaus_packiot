@@ -14,8 +14,10 @@ export class CreteToDo1693547697092 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid",
-                        isPrimary: true
+                        type: "int",
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment"
                     },
                     {
                         name: "title",
@@ -37,7 +39,8 @@ export class CreteToDo1693547697092 implements MigrationInterface {
                     },
                     {
                         name: "finished_at",
-                        type: "timestamptz"
+                        type: "timestamptz",
+                        default: "now()"
                     }
                 ]
             })

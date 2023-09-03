@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm"
 import { Todo } from "./entities/Todo"
+import { CreteToDo1693547697092 } from "./database/migrations/1693547697092-CreteToDo"
 
 // Interaction with database is only possible with a DataSource.
 // TypeORM's DataSource hands the database connection settings and
@@ -9,10 +10,12 @@ import { Todo } from "./entities/Todo"
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
-    port: 5555,
-    username: "postgres",
+    port: 5432,
+    username: "user_packiot",
     password: "packiot",
-    entities: [Todo]
+    database: "tasks_db",
+    entities: [Todo],
+    migrations: [CreteToDo1693547697092]
 })
 
 AppDataSource.initialize()
@@ -32,3 +35,14 @@ main().catch(err => {
     console.error(err);
     process.exit(1);
 });
+
+export const getDataSource = (delay = 3000): Promise<DataSource> => {
+    if (AppDataSource.isInitialized) return Promise.resolve(AppDataSource);
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+        if (AppDataSource.isInitialized) resolve(AppDataSource);
+        else reject("Failed to create connection with database");
+        }, delay);
+    });
+};

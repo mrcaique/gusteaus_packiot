@@ -1,4 +1,4 @@
-import { AppDataSource } from "../data-source";
+import { getDataSource } from "../data-source";
 import { Todo } from "../entities/Todo";
 
 // Informations needed to update a task.
@@ -20,6 +20,7 @@ export class UpdateTaskService {
     async execute({id, title, description} : TodoUpdateRequest) {
 
         // Layer responsible to communicate with the database.
+        const AppDataSource = await getDataSource();
         const repo = AppDataSource.getRepository(Todo);
 
         const task = await repo.findOneBy({id : id});

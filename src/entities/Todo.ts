@@ -13,8 +13,8 @@ import {
 @Entity("todo")
 export class Todo {
 
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+    @PrimaryGeneratedColumn('increment')
+    id: number;
 
     @Column()
     title: string;
