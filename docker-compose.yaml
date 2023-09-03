@@ -1,0 +1,28 @@
+version: '3'
+volumes:
+  psql:
+services:
+  psql:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user_packiot
+      POSTGRES_PASSWORD: packiot
+      POSTGRES_DB: tasks_db
+    volumes:
+      - psql:/var/lib/postgresql/data # save data between restarts
+  
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - psql
+    volumes:
+      - .:/app
+    environment:
+      DB_USER: user_packiot
+      DB_PASSWORD: packiot
+      DB_NAME: tasks_db
+      DB_HOST: psql
+    command: npm run dev
