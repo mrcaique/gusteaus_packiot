@@ -1,5 +1,10 @@
 import request from 'supertest';
 import { app } from '../src';
+import { AppDataSource } from '../src/data-source';
+
+afterAll(async () => {
+    await AppDataSource.destroy();
+});
 
 describe("Post endpoints", () => {
     test("Create new task", async () => {

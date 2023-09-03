@@ -9,11 +9,11 @@ import { CreteToDo1693547697092 } from "./database/migrations/1693547697092-Cret
 // Exports DataSource to be available across the application.
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: process.env.DB_HOST,
     port: 5432,
-    username: "user_packiot",
-    password: "packiot",
-    database: "tasks_db",
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     entities: [Todo],
     migrations: [CreteToDo1693547697092]
 })
@@ -24,20 +24,13 @@ AppDataSource.initialize()
     })
     .catch((err) => {
         console.error("Error during Data Source initialization", err)
+        process.exit(1);
     })
 
-const main = async () => {
-    console.time('main');
-    await AppDataSource.initialize();
-};
-
-main().catch(err => {
-    console.error(err);
-    process.exit(1);
-});
-
 export const getDataSource = (delay = 3000): Promise<DataSource> => {
-    if (AppDataSource.isInitialized) return Promise.resolve(AppDataSource);
+    if (AppDataSource.isInitialized) {
+        return Promise.resolve(AppDataSource)
+    };
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
