@@ -8,7 +8,7 @@ export class DeleteTaskService {
      * @param id - id from the task to be removed.
      * @returns - If id does not exists, an Error is thrown.
      */
-    async execute(id : string) {
+    async execute(id : number) {
         
         // Layer responsible to communicate with the database.
         const AppDataSource = await getDataSource();

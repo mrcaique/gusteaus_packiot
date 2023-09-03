@@ -14,10 +14,21 @@ export class UpdateTaskController {
      */
     async handle(req: Request, res: Response) {
         const { id } = req.params;
-        const { title, description } = req.body;
+        const int_id = Number(id);
+
+        if (!Number.isInteger(int_id)) {
+            return res.status(400).json("ID not found.");
+        }
+
+        const { title, description, finished_at } = req.body;
         
         const service = new UpdateTaskService();
-        const result = await service.execute({ id, title, description });
+        const result = await service.execute({
+            id : int_id,
+            title,
+            description,
+            finished_at
+        });
 
         if (result instanceof Error) {
             return res.status(400).json(result.message);

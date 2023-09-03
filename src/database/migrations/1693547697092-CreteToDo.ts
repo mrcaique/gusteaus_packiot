@@ -40,7 +40,7 @@ export class CreteToDo1693547697092 implements MigrationInterface {
                     {
                         name: "finished_at",
                         type: "timestamptz",
-                        default: "now()"
+                        isNullable: true
                     }
                 ]
             })

@@ -3,9 +3,10 @@ import { Todo } from "../entities/Todo";
 
 // Informations needed to update a task.
 type TodoUpdateRequest = {
-    id: string,
+    id: number,
     title: string,
-    description: string;
+    description: string,
+    finished_at ?: boolean;
 }
 
 export class UpdateTaskService {
@@ -17,7 +18,7 @@ export class UpdateTaskService {
      * @returns If task does not exists, an Error is thrown, otherwise, is
      *  returned the updated task.
      */
-    async execute({id, title, description} : TodoUpdateRequest) {
+    async execute({id, title, description, finished_at} : TodoUpdateRequest) {
 
         // Layer responsible to communicate with the database.
         const AppDataSource = await getDataSource();
@@ -31,8 +32,19 @@ export class UpdateTaskService {
 
         // If there is no new title and/or description, maintain what was
         // left before.
-        task.title = title ? title : task.title;
-        task.description = description ? description : task.description;
+        if (title) {
+            task.title = title;
+        }
+    
+        if (description) {
+            task.description = description;
+        }
+
+        if (finished_at === true) {
+            task.finished_at = new Date();
+        } else if (finished_at === false) {
+            task.finished_at = null;
+        }
 
         await repo.save(task);
 

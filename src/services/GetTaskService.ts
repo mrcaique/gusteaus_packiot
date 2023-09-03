@@ -8,7 +8,7 @@ export class GetTaskService {
      * @param id - Task identifier.
      * @returns If task does not exists, an Error is thrown.
      */
-    async execute(id : string) {
+    async execute(id : number) {
 
         // Layer responsible to communicate with the database.
         const AppDataSource = await getDataSource();
@@ -17,7 +17,7 @@ export class GetTaskService {
         const task = await repo.findOneBy({id : id});
 
         if (!task) {
-            return new Error("Task does not exists!");
+            throw new Error("ID not found");
         }
 
         return task;

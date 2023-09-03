@@ -15,12 +15,12 @@ export class CreateTaskController {
     async handle(req: Request, res: Response) {
         const {title, description} = req.body;
         const service = new CreateTaskService();
-        const result = await service.execute({title, description});
 
-        if (result instanceof Error) {
-            return res.status(400).json(result.message);
+        try{
+            const result = await service.execute({title, description});
+            return res.status(201).json(result);
+        } catch(e) {
+            return res.status(400).json(e.message);
         }
-
-        return res.json(result);
     }
 }

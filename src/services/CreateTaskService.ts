@@ -1,5 +1,6 @@
 import { Todo } from "../entities/Todo";
 import { getDataSource } from "../data-source";
+import { IsNull } from "typeorm";
 
 // Informations needed to create a new task.
 type TaskRequest = {
@@ -20,6 +21,10 @@ export class CreateTaskService {
         // Layer responsible to communicate with the database.
         const AppDataSource = await getDataSource();
         const repo = AppDataSource.getRepository(Todo);
+
+        if (!title || !description) {
+            throw new Error("Title or description is null");
+        }
 
         const task = repo.create({
             title,

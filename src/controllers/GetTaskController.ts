@@ -13,10 +13,21 @@ export class GetTaskController {
      */
     async handle(req: Request, res: Response) {
         const { id } = req.params;
+        const int_id = Number(id);
+        if (!Number.isInteger(int_id)) {
+            return res.status(400).json("ID not found.");
+        }
 
         const service = new GetTaskService();
-        const task = await service.execute(id);
+        /*const task = await service.execute(int_id);
         
-        return res.json(task);
+        return res.json(task);*/
+
+        try{
+            const task = await service.execute(int_id);
+            return res.json(task);
+        } catch(e) {
+            return res.status(400).json(e.message);
+        }
     }
 }
