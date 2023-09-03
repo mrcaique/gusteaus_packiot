@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/app.ts",
     "typeorm": "ts-node-dev node_modules/.bin/typeorm",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "migrate": "ts-node-dev node_modules/.bin/typeorm migration:run -d ./src/data-source.ts"
   },
   "keywords": [],
   "author": "",

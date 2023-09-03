@@ -1,6 +1,4 @@
 version: '3'
-volumes:
-  psql:
 services:
   psql:
     image: postgres:latest
@@ -10,7 +8,7 @@ services:
       POSTGRES_PASSWORD: packiot
       POSTGRES_DB: tasks_db
     volumes:
-      - psql:/var/lib/postgresql/data # save data between restarts
+      - /var/lib/postgresql/data # save data between restarts
   
   node-app:
     build:
