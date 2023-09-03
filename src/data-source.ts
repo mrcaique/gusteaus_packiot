@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm"
 import { Todo } from "./entities/Todo"
-import { CreteToDo1693547697092 } from "./database/migrations/1693547697092-CreteToDo"
+import { CreateToDo1693547697092 } from "./database/migrations/1693547697092-CreateToDo"
 
 // Interaction with database is only possible with a DataSource.
 // TypeORM's DataSource hands the database connection settings and
@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     entities: [Todo],
-    migrations: [CreteToDo1693547697092]
+    migrations: [CreateToDo1693547697092]
 })
 
 AppDataSource.initialize()

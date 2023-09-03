@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreteToDo1693547697092 implements MigrationInterface {
+export class CreateToDo1693547697092 implements MigrationInterface {
     /**
      * Code needed to perform the migration, in this case, create a table into
      * the database.
