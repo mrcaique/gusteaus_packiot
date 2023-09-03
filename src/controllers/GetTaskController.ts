@@ -19,9 +19,6 @@ export class GetTaskController {
         }
 
         const service = new GetTaskService();
-        /*const task = await service.execute(int_id);
-        
-        return res.json(task);*/
 
         try{
             const task = await service.execute(int_id);
