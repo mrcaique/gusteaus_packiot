@@ -1,11 +1,11 @@
 # Gusteau's
 This repository is a CRUD RESTful API for a ToDo list in NodeJS with TypeScript, using PostgreSQL.
 
-## Dependecies
+## Dependencies
 * Docker
 * Docker-compose
 
-## Instalation
+## Installation
 1. Clone the repository
 2. `cd gusteaus_packiot`
 3. `docker-compose build`
